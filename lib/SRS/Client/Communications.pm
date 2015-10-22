@@ -25,7 +25,8 @@ use warnings;
 use Carp;
 use Config;
 
-use SRS::Client::OpenPGP;
+#use SRS::Client::OpenPGP;
+use SRS::Client::GpgME;
 use SRS::Client::Versions;
 use base qw (SRS::Client::Comms::XML);
 
@@ -124,7 +125,7 @@ SRS::OpenPGP object (optional, one will be created if missing)
 sub new(%)
 {
     my ($proto, %args) = @_;
-    $args{pgp} ||= new SRS::Client::OpenPGP;
+    $args{pgp} ||= new SRS::Client::GpgME;
     
     # If the program name was defined, build a UA string
     if ($args{program}) {
@@ -142,7 +143,7 @@ sub new(%)
         $args{ua_string} = $ua;
     }
 
-    return SRS::Comms::XML->new(%args);
+    return SRS::Client::Comms::XML->new(%args);
 }
 
 =head1 METHODS
