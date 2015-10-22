@@ -1,0 +1,23 @@
+
+#first 10 billing account results for a domain#
+
+Transaction: registraraccountqry 
+domain_name: test88888.net.nz 
+max_results: 10 
+skip_results: 0 
+
+
+#billing account results searching on RegistrantRef#
+
+Transaction: registraraccountqry 
+Registrant_customer_ref: ref
+
+
+#billing account results for a domain between a date range#
+
+Transaction: RegistrarAccountQry 
+domain_name: test88888.net.nz 
+max_results: 1000 
+skip_results: 0 
+Trans_Date_From: 2007/1/28,12:00 
+Trans_Date_To: 2007/9/28,12:00

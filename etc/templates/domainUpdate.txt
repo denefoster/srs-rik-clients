@@ -1,0 +1,132 @@
+
+#delegate a domain#
+
+Transaction: DomainUpdate 
+Action_ID: delegate_test_102610200400 
+Domain_Name_Filter: test88888.net.nz  
+Delegate: 1
+audit_text: "delegate"
+
+
+#cancel a domain#
+
+Transaction: DomainUpdate 
+Action_ID: cancel_test_102610200400 
+Domain_Name_Filter: 0.gen.nz  
+Cancel: 1
+audit_text: "cancel"
+
+
+#request new UDAI#
+
+Transaction: DomainUpdate 
+Action_ID: newUDAI_test_102610200400 
+Domain_Name_Filter: test88888.net.nz  
+New_UDAI: 1
+audit_text: "new UDAI"
+
+
+#renew domain for 12 months#
+
+Transaction: DomainUpdate 
+Action_ID:   transfer_renew_test_102610200400 
+Domain_Name_Filter: testdomain1.co.nz  
+billing_term: 12 
+Renew_now: 1
+audit_text: "renew domain for 12 months"
+
+
+#transfer and renew domain#
+
+Transaction: DomainUpdate 
+Action_ID:   transfer_renew_test_102610200401 
+Domain_Name_Filter: test.co.nz  
+billing_term: 10 
+UDAI: er9EU6Ut 
+Renew_now: 1
+audit_text: "transfer and renew domain for 10 months"
+
+
+#Example of updating a field (postal code)#
+
+Transaction: DomainUpdate 
+Action_ID: update_postal_code_test_102610200402 
+Domain_Name_Filter: test.co.nz 
+Registrant_postalcode: 60025677 
+audit_text: "update postal code"
+
+
+#Example of clearing a field (postal code)#
+
+Transaction: DomainUpdate 
+Action_ID: clear_postal_code_test_102610200403 
+Domain_Name_Filter: test.co.nz 
+Registrant_postalcode: NULL 
+audit_text: "clear the contents of the postal code"
+
+
+#Example of updating a field (fax number)#
+
+Transaction: DomainUpdate 
+Action_ID: update_fax_test_102610200404 
+Domain_Name_Filter: test.co.nz 
+registrant_fax: +64-4-123-4567 
+audit_text: "update the registrant fax number"
+
+
+#Example of clearing a field (fax number)#
+
+Transaction: DomainUpdate 
+Action_ID: clear_fax_test_102610200405 
+Domain_Name_Filter: test.co.nz 
+registrant_fax: NULL 
+audit_text: "clear the contents of the registrant fax number"
+
+
+#update all fields of a domain#
+
+Transaction: DomainUpdate
+action_id: 11187hjh98
+Domain_Name_Filter: test.co.nz
+Delegate: 1
+Registrant_customer_ref: ref
+Registrant_Name: test
+Registrant_Address1: address1
+Registrant_Address2: address2
+Registrant_postalcode: 12345
+Registrant_province: NSW
+Registrant_Country: NZ
+Registrant_City: wgtn
+Registrant_Email: test@test.co.nz
+Registrant_phone: +64-4-123-4567
+Registrant_fax: +64-4-123-4567
+Admin_Name: test
+admin_Address1: address1
+admin_Address2: address2
+admin_postalcode: 12234
+admin_province: NSW
+admin_Country: NZ
+admin_City: wgtn
+admin_Email: test@test.co.nz
+admin_phone: +64-4-123-4567
+admin_fax: +64-4-123-4567
+Tech_Name: test
+tech_Address1: address1
+tech_Address2: address2
+tech_Country: NZ
+tech_City: wgtn
+tech_Email: test@test.co.nz
+tech_phone: +64-4-123-4567
+tech_fax: +64-4-1234567
+tech_postalcode: 12345
+tech_province: NSW
+NS_Name_1: test.co.nz
+NS_IP_1: 192.168.1.1
+NS_IP6_1: 2001:0DB8::1
+NS_Name_2: test2.co.nz
+NS_IP_2: 192.168.2.1
+NS_Name_3: test3.co.nz
+NS_IP_3: 192.168.1.3
+NS_Name_4: test4.co.nz
+NS_IP_4: 192.168.2.4
+audit_text: "update all fields"

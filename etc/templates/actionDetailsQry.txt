@@ -1,0 +1,5 @@
+
+#returns the XML RawRequest and RawResponse strings#
+
+Transaction: actiondetailsqry
+action_id: newUDAI_test_102610200400

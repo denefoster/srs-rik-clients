@@ -1,0 +1,6 @@
+
+#returns if the UDAI is valid or not#
+
+Transaction: udaivalidqry 
+domain_name: test88888.net.nz 
+udai: 10 

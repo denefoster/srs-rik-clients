@@ -1,0 +1,72 @@
+
+
+#list the first 20 domains under your ID#
+
+Transaction: DomainDetailsQry
+max_results: 20
+skip_results: 0
+
+
+#list the second 20 domains under your ID#
+
+Transaction: DomainDetailsQry
+max_results: 20
+skip_results: 20
+
+
+#list the first 20 delegated domains under your ID#
+(also list on Term, Status)
+
+Transaction: DomainDetailsQry
+Delegate: 1
+max_results: 20
+skip_results: 0
+
+
+#returns the status of the domain#
+
+Transaction: DomainDetailsQry
+Domain_Name_Filter: test.co.nz
+
+
+#returns the first 20 domains under you ID with the below name server#
+
+Transaction: DomainDetailsQry
+max_results: 20
+skip_results: 0
+ns_filter_name_1: dns1.clear.net.nz
+
+
+#returns first 1,000 domains registered between dates#
+(other date ranges can be used:
+ LockedDateRange, for domains locked between two dates
+ CancelledDateRange,  for domains cancelled between two dates
+ BilledUntilDateRange, for domains that have their next billing date falling between two dates)
+
+Transaction: DomainDetailsQry
+max_results: 1000
+skip_results: 0
+registered_date_from: 2007/01/01,12:00:00
+registered_date_to: 2007/08/01,12:00:00
+
+
+#current details of a domain#
+
+Transaction: DomainDetailsQry
+Domain_Name_Filter: testdomain.net.nz
+Field_list: Status,NameServers,RegistrantContact,RegisteredDate,AdminContact,TechnicalContact,LockedDate,Delegate,RegistrarId,RegistrarName,RegistrantRef,LastActionId,ChangedByRegistrarId,Term,BilledUntil,CancelledDate,AuditText,EffectiveFrom
+
+
+#complete history of a domain from 2007#
+
+
+Transaction: DomainDetailsQry
+Domain_Name_Filter: test88888.net.nz
+Show_History: 1
+Field_list: Status,NameServers,RegistrantContact,RegisteredDate,AdminContact,TechnicalContact,LockedDate,Delegate,RegistrarId,RegistrarName,RegistrantRef,LastActionId,ChangedByRegistrarId,Term,BilledUntil,CancelledDate,AuditText,EffectiveFrom
+
+
+Note: domains must be under the registrar's ID , you can not do a history on a name under a different registrar.
+
+Note: Count fuction is only available using XML
+
