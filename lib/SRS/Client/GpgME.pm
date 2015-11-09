@@ -41,7 +41,7 @@ sub new {
     
     $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
 
-    $self->{'ctx'}->signers_add( $args{'secretKeyRing'} ) if defined defined $args{'secretKeyRing'};
+    $self->{'ctx'}->signers_add( $args{'secretKeyRing'} ) if defined $args{'secretKeyRing'};
 
     bless $self, $class;
 
