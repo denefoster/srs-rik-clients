@@ -78,7 +78,7 @@ sub sendXML {
         pgp => SRS::Client::GpgME->new(
             secretKeyRing => $self->{gpg_secret},
             publicKeyRing => $self->{gpg_public},
-            passphrase    => $self->{gpg_passphrase}
+            passphrase    => $self->{gpg_passphrase},
             uid           => $self->{gpg_id},
         ),
 #        pgp => new SRS::Client::OpenPGP(
