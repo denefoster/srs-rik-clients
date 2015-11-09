@@ -28,7 +28,7 @@ use Pod::Usage;
 use FindBin;
 
 use SRS::Client::Communications;
-use SRS::Client::OpenPGP;
+use SRS::Client::GpgME;
 use SRS::Client::Versions;
 
 sub error {
@@ -75,11 +75,17 @@ sub sendXML {
     my $comms = SRS::Client::Communications->new(
         registrar => $self->{registrar_id},
         url => $self->{url},
-        pgp => new SRS::Client::OpenPGP(
+        pgp => SRS::Client::GpgME->new(
             secretKeyRing => $self->{gpg_secret},
             publicKeyRing => $self->{gpg_public},
+            passphrase    => $self->{gpg_passphrase}
             uid           => $self->{gpg_id},
         ),
+#        pgp => new SRS::Client::OpenPGP(
+#            secretKeyRing => $self->{gpg_secret},
+#            publicKeyRing => $self->{gpg_public},
+#            uid           => $self->{gpg_id},
+#        ),
         timeout => $self->{timeout},
         secureUrl => $self->{url},    
         program => $program,

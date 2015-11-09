@@ -32,11 +32,16 @@ use IO::File;
 use Crypt::GpgME;
 
 sub new {
-    my ($class, $args) = @_;
+    my ($class, %args) = @_;
 
     my $self = {
-        'ctx' => Crypt::GpgME->new,
+        'ctx'        => Crypt::GpgME->new(),
+        'public_key' => $args{'publicKeyRing'}
     };
+    
+    $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
+
+    $self->{'ctx'}->signers_add( $args{'secretKeyRing'} ) if defined defined $args{'secretKeyRing'};
 
     bless $self, $class;
 
@@ -45,20 +50,18 @@ sub new {
 }
 
 sub verify {
-    my ($self, $data, $passphrase) = @_;
+    my ($self, $params) = @_;
 
-    $ctx->set_passphrase_cb(sub { $passphrase });
-
-    my $verified = $self->{'ctx'}->verify($data);
+    my $verified = $self->{'ctx'}->verify( $self->{'public_key'}, $params->{'Data'} );
 
     return $verified;
 
 }
 
 sub sign {
-    my ($self, $data) = @_;
+    my ($self, $params) = @_;
 
-    my $signed = $self->{'ctx'}->sign( $data );
+    my $signed = $self->{'ctx'}->sign( $params->{'Data'} );
 
     return $signed;
 
