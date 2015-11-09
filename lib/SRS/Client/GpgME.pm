@@ -50,18 +50,18 @@ sub new {
 }
 
 sub verify {
-    my ($self, $params) = @_;
+    my ($self, %params) = @_;
 
-    my $verified = $self->{'ctx'}->verify( $self->{'public_key'}, $params->{'Data'} );
+    my $verified = $self->{'ctx'}->verify( $self->{'public_key'}, $params{'Data'} );
 
     return $verified;
 
 }
 
 sub sign {
-    my ($self, $params) = @_;
+    my ($self, %params) = @_;
 
-    my $signed = $self->{'ctx'}->sign( $params->{'Data'} );
+    my $signed = $self->{'ctx'}->sign( $params{'Data'} );
 
     return $signed;
 
