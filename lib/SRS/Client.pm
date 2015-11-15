@@ -89,7 +89,7 @@ sub sendXML {
         timeout => $self->{timeout},
         secureUrl => $self->{url},    
         program => $program,
-        ca_path => '/etc/ssl/certs',
+        ca_path => "$FindBin::Bin/../etc/certs",
     );
 
     my ($error, $response) = $comms->send(

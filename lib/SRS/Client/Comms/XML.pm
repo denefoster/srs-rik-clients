@@ -26,6 +26,7 @@ use strict;
 use warnings;
 use Carp;
 use utf8;
+use FindBin;
 
 use SRS::Client::URLEncoding;
 
@@ -78,10 +79,12 @@ sub new {
         $ua_opt{ssl_opts} = { 
             verify_hostname => 1,
             ($args{ca_file} ? (SSL_ca_file => $args{ca_file}) : ()),
-            ($args{ca_path} ? (SSL_ca_path => $args{ca_path}) : (SSL_ca_path => '/etc/ssl/certs')),
+            ($args{ca_path} ? (SSL_ca_path => $args{ca_path}) : (SSL_ca_path => "$FindBin::Bin/../etc/certs")),
         };
       }     
     }
+    
+    print STDERR "Using cert path: $args{ca_path}\n";
     
     $args{ua} = LWP::UserAgent->new(%ua_opt);
     
