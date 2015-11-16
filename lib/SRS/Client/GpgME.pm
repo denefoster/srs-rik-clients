@@ -30,6 +30,7 @@ use Carp;
 
 use IO::File;
 use Crypt::GpgME;
+use FindBin;
 
 sub new {
     my ($class, %args) = @_;
@@ -52,11 +53,11 @@ sub new {
 sub verify {
     my ($self, %params) = @_;
     
-    print "Verify: Primary Key - $self->{'public_key'}\n";
+    print "Sign: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
-    print "Verify: Data - $params{'Data'}\n";
+    print "Sign: Data - $params{'Data'}\n";
 
-    my $verified = $self->{'ctx'}->verify( $self->{'public_key'}, $params{'Data'} );
+    my $verified = $self->{'ctx'}->verify( "$FindBin::Bin/../etc/reg.key", $params{'Data'} );
 
     return $verified;
 
@@ -64,6 +65,8 @@ sub verify {
 
 sub sign {
     my ($self, %params) = @_;
+    
+    print "Verify: Data - $params{'Data'}\n";
 
     my $signed = $self->{'ctx'}->sign( $params{'Data'} );
 
