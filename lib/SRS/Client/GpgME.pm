@@ -55,6 +55,7 @@ sub new {
 
 sub verify {
     my ($self, %params) = @_;
+    $self->{'ctx'}->signers_add( "$FindBin::Bin/../etc/reg.key" );
     
     print "Sign: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
