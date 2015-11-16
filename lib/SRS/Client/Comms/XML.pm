@@ -79,12 +79,12 @@ sub new {
         $ua_opt{ssl_opts} = { 
             verify_hostname => 1,
             ($args{ca_file} ? (SSL_ca_file => $args{ca_file}) : ()),
-            ($args{ca_path} ? (SSL_ca_path => $args{ca_path}) : (SSL_ca_path => "$FindBin::Bin/../etc/certs")),
+            ($args{ca_path} ? (SSL_ca_path => $args{ca_path}) : ()),
         };
       }     
     }
     
-    print STDERR "Using cert path: $args{ca_path}\n";
+    print STDERR "Using cert path: $ua_opt{ssl_opts}{'SSL_ca_path'}\n";
     
     $args{ua} = LWP::UserAgent->new(%ua_opt);
     
