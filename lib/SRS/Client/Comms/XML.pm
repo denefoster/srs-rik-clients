@@ -84,8 +84,6 @@ sub new {
       }     
     }
     
-    print STDERR "Using cert path: $ua_opt{ssl_opts}{'SSL_ca_path'}\n";
-    
     $args{ua} = LWP::UserAgent->new(%ua_opt);
     
     if ( $args{ua_string} ) {

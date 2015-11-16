@@ -42,7 +42,10 @@ sub new {
     
     $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
 
-    $self->{'ctx'}->signers_add( $args{'secretKeyRing'} ) if defined $args{'secretKeyRing'};
+    if ( defined $args{'secretKeyRing'} ) {
+        $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
+        print "Added secret key '$args{'secretKeyRing'}' to keyring.";
+    }
 
     bless $self, $class;
 
