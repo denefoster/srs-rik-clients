@@ -57,7 +57,7 @@ sub verify {
     
     print "Sign: Data - $params{'Data'}\n";
 
-    my $verified = $self->{'ctx'}->verify( "$FindBin::Bin/../etc/reg.key", $params{'Data'} );
+    my $verified = $self->{'ctx'}->verify( IO::File->new("$FindBin::Bin/../etc/reg.key", 'r'), $params{'Data'} );
 
     return $verified;
 
