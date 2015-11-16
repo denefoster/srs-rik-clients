@@ -51,6 +51,10 @@ sub new {
 
 sub verify {
     my ($self, %params) = @_;
+    
+    print "Verify: Primary Key - $self->{'public_key'}\n";
+    
+    print "Verify: Data - $params{'Data'}\n";
 
     my $verified = $self->{'ctx'}->verify( $self->{'public_key'}, $params{'Data'} );
 
