@@ -55,11 +55,10 @@ sub new {
 
 sub verify {
     my ($self, %params) = @_;
-    $self->{'ctx'}->signers_add( IO::File->new("$FindBin::Bin/../etc/reg.key", 'r') );
     
-    print "Sign: Primary Key - $FindBin::Bin/../etc/reg.key\n";
+    print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
-    print "Sign: Data - $params{'Data'}\n";
+    print "Verify: Data - $params{'Data'}\n";
 
     my $verified = $self->{'ctx'}->verify( IO::File->new("$FindBin::Bin/../etc/reg.key", 'r'), $params{'Data'} );
 
@@ -70,7 +69,7 @@ sub verify {
 sub sign {
     my ($self, %params) = @_;
     
-    print "Verify: Data - $params{'Data'}\n";
+    print "Sign: Data - $params{'Data'}\n";
 
     my $signed = $self->{'ctx'}->sign( $params{'Data'} );
 
