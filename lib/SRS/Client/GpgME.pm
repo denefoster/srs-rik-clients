@@ -59,8 +59,12 @@ sub verify {
     print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
     print "Verify: Data - $params{'Data'}\n";
-
-    my $verified = $self->{'ctx'}->verify( IO::File->new("$FindBin::Bin/../etc/reg.key", 'r'), $params{'Data'} );
+    
+    my $key = read_file( "$FindBin::Bin/../etc/reg.key" ) ;
+    
+    print "Verify: Key - $key\n";
+    
+    my $verified = $self->{'ctx'}->verify( $key, $params{'Data'} );
 
     return $verified;
 
