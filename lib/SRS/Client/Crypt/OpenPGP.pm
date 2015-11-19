@@ -1,4 +1,4 @@
-# SRS Crypt::OpenPGP interface
+# SRS Client::Crypt::OpenPGP interface
 #
 #--------------------------------------------------------------------------------------------------
 #
@@ -26,7 +26,7 @@
 #  exceptions for any of our methods. All methods indicate errors by returning
 #  false/undef. The errstr method can then be used to get the details of the error.
 
-package SRS::Client::OpenPGP;
+package SRS::Client::Crypt::OpenPGP;
 
 use strict;
 use warnings;

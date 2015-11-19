@@ -1,4 +1,4 @@
-# SRS Crypt::GpgME interface
+# SRS::Client::Crypt::GnuPG interface
 #
 #--------------------------------------------------------------------------------------------------
 #
@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 #--------------------------------------------------------------------------------------------------
 
-package SRS::Client::GpgME;
+package SRS::Client::Crypt::GnuPG;
 
 use strict;
 use warnings;
@@ -29,7 +29,7 @@ use warnings;
 use Carp;
 
 use IO::File;
-use Crypt::GpgME;
+use GnuPG;
 use FindBin;
 use File::Slurp;
 
@@ -37,14 +37,18 @@ sub new {
     my ($class, %args) = @_;
 
     my $self = {
-        'ctx'        => Crypt::GpgME->new(),
-        'public_key' => $args{'publicKeyRing'}
+        'ctx'        => GnuPG->new(),
+        'public_key' => $args{'publicKeyRing'},
+        'secret'     => $args{'passphrase'}
     };
-    
-    $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
+
+    if (defined $args{'publicKeyRing'} ) {
+        $self->{'ctx'}->import_keys( keys => [ qw( $args{'publicKeyRing'} ) ] );
+        print "Added public key '$args{'publicKeyRing'}' to keyring.";
+    }
 
     if ( defined $args{'secretKeyRing'} ) {
-        $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
+        $self->{'ctx'}->import_keys( keys => [ qw( $args{'secretKeyRing'} ) ] );
         print "Added secret key '$args{'secretKeyRing'}' to keyring.";
     }
 
@@ -61,13 +65,11 @@ sub verify {
     
     print "Verify: Data - $params{'Data'}\n";
     
-    my $key = read_file( "$FindBin::Bin/../etc/reg.key" ) ;
-    
-    print "Verify: Key - $key\n";
-    
-    my $verified = $self->{'ctx'}->verify( $key, $params{'Data'} );
+    my $sig = $self->{'ctx'}->verify( file => "$FindBin::Bin/../etc/reg.key",
+                                      signature => "$FindBin::Bin/../etc/reg.key"
+    );
 
-    return $verified;
+    return defined $sig ? 1 : 0;
 
 }
 
@@ -76,9 +78,17 @@ sub sign {
     
     print "Sign: Data - $params{'Data'}\n";
 
-    my $signed = $self->{'ctx'}->sign( $params{'Data'} );
+    $self->{'ctx'}->sign(  plaintext   => "/home/vagrant/srs-rik-clients/waihi.xml",
+                           output      => "/home/vagrant/srs-rik-clients/file.gpg",
+                           armor       => 1,
+                           sign        => 1,
+                           passphrase  => $self->{'passphrase'}
+    );
 
-    return $signed;
+    my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
+    my $signature = read_file('/home/vagrant/srs-rik-clients/file.gpg');
+
+    return $request;
 
 }
 

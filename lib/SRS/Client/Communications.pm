@@ -25,8 +25,9 @@ use warnings;
 use Carp;
 use Config;
 
-#use SRS::Client::OpenPGP;
-use SRS::Client::GpgME;
+use SRS::Client::Crypt::OpenPGP;
+use SRS::Client::Crypt::GpgME;
+use SRS::Client::Crypt::GnuPG;
 use SRS::Client::Versions;
 use base qw (SRS::Client::Comms::XML);
 

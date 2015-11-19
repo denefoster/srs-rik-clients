@@ -27,7 +27,6 @@ use Pod::Usage;
 
 use Carp;
 
-use SRS::Client::Legacy::Translator;
 use SRS::Client::Versions;
 use SRS::Client::Options::SRSClient;
 
@@ -129,8 +128,7 @@ sub run {
     warn "Response: $response\n" if $self->{debug};
 
     # TODO: handle error responses?
-    print "Results:\n";
-    print SRS::Client::Legacy::Translator::from_response_to_legacy_output($response);
+
 }
 
 1;
