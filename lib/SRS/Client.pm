@@ -27,7 +27,7 @@ use Time::HiRes qw (gettimeofday);
 use Pod::Usage;
 use FindBin;
 
-use SRS::Client::GpgME;
+use SRS::Client::Crypt::GpgME;
 use SRS::Client::Communications;
 use SRS::Client::Versions;
 
