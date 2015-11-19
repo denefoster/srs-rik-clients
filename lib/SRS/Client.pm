@@ -75,7 +75,7 @@ sub sendXML {
     my $comms = SRS::Client::Communications->new(
         registrar => $self->{registrar_id},
         url => $self->{url},
-        pgp => new SRS::Client::GpgME(
+        pgp => new SRS::Client::Crypt::GpgME(
             secretKeyRing => $self->{gpg_secret},
             publicKeyRing => $self->{gpg_public},
             passphrase    => $self->{gpg_passphrase},
