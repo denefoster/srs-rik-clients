@@ -36,10 +36,12 @@ use File::Slurp;
 sub new {
     my ($class, %args) = @_;
 
+    print STDERR "Secret: $args{'passphrase'}\n";
+
     my $self = {
         'ctx'        => GnuPG->new(),
         'public_key' => $args{'publicKeyRing'},
-        'secret'     => $args{'passphrase'}
+        'passphrase' => $args{'passphrase'}
     };
 
     if (defined $args{'publicKeyRing'} ) {
