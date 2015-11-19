@@ -28,6 +28,8 @@ use Pod::Usage;
 use FindBin;
 
 use SRS::Client::Crypt::GpgME;
+use SRS::Client::Crypt::GnuPG;
+use SRS::Client::Crypt::OpenPGP;
 use SRS::Client::Communications;
 use SRS::Client::Versions;
 
@@ -75,12 +77,18 @@ sub sendXML {
     my $comms = SRS::Client::Communications->new(
         registrar => $self->{registrar_id},
         url => $self->{url},
-        pgp => new SRS::Client::Crypt::GpgME(
+        pgp => new SRS::Client::Crypt::GnuPG(
             secretKeyRing => $self->{gpg_secret},
             publicKeyRing => $self->{gpg_public},
             passphrase    => $self->{gpg_passphrase},
             uid           => $self->{gpg_id},
         ),
+#        pgp => new SRS::Client::Crypt::GpgME(
+#            secretKeyRing => $self->{gpg_secret},
+#            publicKeyRing => $self->{gpg_public},
+#            passphrase    => $self->{gpg_passphrase},
+#            uid           => $self->{gpg_id},
+#        ),
 #        pgp => new SRS::Client::OpenPGP(
 #            secretKeyRing => $self->{gpg_secret},
 #            publicKeyRing => $self->{gpg_public},
