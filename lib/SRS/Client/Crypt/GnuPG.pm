@@ -67,7 +67,10 @@ sub verify {
     
     print "Verify: Data - $params{'Data'}\n";
     
-    my $sig = $self->{'ctx'}->verify( file => "$FindBin::Bin/../etc/reg.key",
+    my $file = uniq_file();
+    write_file( '/tmp/' . $file, $params{'Data'} );
+    
+    my $sig = $self->{'ctx'}->verify( file      => "/tmp/$file",
                                       signature => "$FindBin::Bin/../etc/reg.key"
     );
 
@@ -93,6 +96,21 @@ sub sign {
     return $request;
 
 }
+
+sub uniq_file {
+    
+    my $file = rndStr(8, 'a'..'z', 0..9) . '.tmp';
+    
+    while ( -e $file ) {
+        $file = rndStr(8, 'a'..'z', 0..9) . '.tmp';
+        next;
+    }
+
+    return $file;
+
+}
+
+sub rndStr{ join'', @_[ map{ rand @_ } 1 .. shift ] }
 
 1;
 
