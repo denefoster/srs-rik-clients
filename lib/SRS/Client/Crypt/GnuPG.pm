@@ -70,6 +70,8 @@ sub verify {
     my $file = uniq_file();
     write_file( '/tmp/' . $file, $params{'Data'} );
     
+    print "Wrote response to $file\n";
+    
     my $sig = $self->{'ctx'}->verify( file      => "/tmp/$file",
                                       signature => "$FindBin::Bin/../etc/reg.key"
     );
