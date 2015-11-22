@@ -32,6 +32,7 @@ use SRS::Client::URLEncoding;
 
 use LWP::UserAgent;
 use HTTP::Request::Common;
+use Data::Dumper;
 
 use constant DEFAULT_TIMEOUT => '180';
 
@@ -183,6 +184,8 @@ sub send {
     unless ($params{requiresSecurity}) {
         $url = $self->{url};
     }
+
+    warn("Posting to $url: " . Dumper(\%postParams) . "\n");
 
     my $req = POST $url, \%postParams;
     
