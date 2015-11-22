@@ -95,7 +95,7 @@ sub sign {
     my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
     my $signature = read_file('/home/vagrant/srs-rik-clients/file.gpg');
 
-    return $request;
+    return $signature;
 
 }
 
