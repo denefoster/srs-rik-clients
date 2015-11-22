@@ -85,15 +85,21 @@ sub sign {
     
     print "Sign: Data - $params{'Data'}\n";
 
+    my $file = uniq_file();
+    
+    print "Writing sig to /tmp/$file\n";
+
     $self->{'ctx'}->sign(  plaintext   => "/home/vagrant/srs-rik-clients/waihi.xml",
-                           output      => "/home/vagrant/srs-rik-clients/file.gpg",
+                           output      => "/tmp/$file",
                            armor       => 1,
                            sign        => 1,
                            passphrase  => $self->{'passphrase'}
     );
 
     my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
-    my $signature = read_file('/home/vagrant/srs-rik-clients/file.gpg');
+    my $signature = read_file("/tmp/$file");
+    
+    print "Sig: $signature\n";
 
     return $signature;
 
