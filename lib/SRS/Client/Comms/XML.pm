@@ -254,7 +254,7 @@ sub send {
     # Send request, and grab response back.
     my $res = $self->{ua}->request($req, $response_callback, 4096);
     print "Leftover: $leftover\n";
-    print "Res: " . $res->content . "\n";
+    print "Res: $response_xml\n";
     print "SIG: $received_sig\n";
     if ($res->content) {
         # If we have something in the content, it must have been due to an error
