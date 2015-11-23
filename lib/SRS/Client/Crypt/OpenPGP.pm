@@ -102,7 +102,7 @@ sub _verify_impl {
     # unpack the signature
     my $msg = Crypt::OpenPGP::Message->new(Data => $armoured_sig)
         or die "reading data packets failed: " .Crypt::OpenPGP::Message->errstr;
-	    
+	print "MSG: " . $msg . "\n";
     my @pieces = $msg->pieces;
 	
 	# this disallows non-detached signatures
