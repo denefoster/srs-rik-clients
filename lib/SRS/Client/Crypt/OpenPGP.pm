@@ -280,6 +280,8 @@ sub getSecKeyBlock {
 
     my $sec_ring = $pgp->{cfg}->get('SecRing')
       or return;
+      
+    print "Sec Ring: $sec_ring\n";
 
     my $ring;
     if (ref $sec_ring && $sec_ring->isa('Crypt::OpenPGP::KeyRing' )) { # is blessed into Crypt::OpenPGP::KeyRing?
