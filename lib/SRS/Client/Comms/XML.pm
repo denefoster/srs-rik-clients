@@ -223,7 +223,7 @@ sub send {
                 return;
             }
         }
-
+        print "R: $r\n";
         if ($r) {
             my ($rs, $ss) = ("$leftover$data" =~ /^(.*?)(\&.*)?$/);
             if ($rs =~ /\%/) {
@@ -241,6 +241,7 @@ sub send {
                 $data = $ss;
             }
         }
+        print "S: $s\n";
 
         if ($s) {
             $received_sig .= $data; 
