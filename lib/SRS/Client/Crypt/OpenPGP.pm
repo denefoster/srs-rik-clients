@@ -209,6 +209,7 @@ sub sign {
                                 Passphrase => $passphrase,
                                 Key        => $key);
         die "Signing attempt failed: ", $pgp->errstr() unless $signature;
+        print "Sig: $signature\n";
     };
     if ($@) {
        $self->{errstr} = $@;
