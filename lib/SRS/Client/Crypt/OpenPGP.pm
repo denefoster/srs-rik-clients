@@ -198,10 +198,7 @@ sub sign {
         my $key        = $params{Key}        || $self->{DefaultSigningKey};
         my $passphrase = $params{PassPhrase} || $params{Passphrase} || '';
         my $pgp        = $self->{PGP};
-        print "Data: $params{Data}\n";
-        print "Key: $params{Key} -- $self->{DefaultSigningKey}\n";
-        print "PassPhrase: $params{PassPhrase}\n";
-        print "PGP: $self->{PGP}\n";
+        print "PRESIGN\n";
         $signature = $pgp->sign(Data       => utf8_encode ($data),
                                 Detach     => 1,
                                 Armour     => 1,

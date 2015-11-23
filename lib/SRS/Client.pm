@@ -104,6 +104,7 @@ sub sendXML {
     my ($error, $response) = $comms->send(
         request => $xml,
         requiresSecurity => 1,
+        requiresSignature => 1
     );
 
     return ($error,$response);
