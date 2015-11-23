@@ -108,6 +108,8 @@ sub _verify_impl {
 	# this disallows non-detached signatures
 	die "signature message contains multiple parts\n" if @pieces > 1;
 	
+	print "Pieces: " . Dumper(@pieces) . "\n";
+	print "Ref: " . ref($pieces[0]) . "\n";
 	if ( ref($pieces[0]) ne 'Crypt::OpenPGP::Signature' ) {
         die "signature message is type '".ref($pieces[0])."', which is weird - rejecting\n";
 	}
