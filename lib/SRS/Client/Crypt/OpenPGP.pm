@@ -102,14 +102,12 @@ sub _verify_impl {
     # unpack the signature
     my $msg = Crypt::OpenPGP::Message->new(Data => $armoured_sig)
         or die "reading data packets failed: " .Crypt::OpenPGP::Message->errstr;
-	print "MSG: " . Dumper($msg) . "\n";
+
     my @pieces = $msg->pieces;
 	
 	# this disallows non-detached signatures
 	die "signature message contains multiple parts\n" if @pieces > 1;
-	
-	print "Pieces: " . Dumper(@pieces) . "\n";
-	print "Ref: " . ref($pieces[0]) . "\n";
+
 	if ( ref($pieces[0]) ne 'Crypt::OpenPGP::Signature' ) {
         die "signature message is type '".ref($pieces[0])."', which is weird - rejecting\n";
 	}
@@ -208,7 +206,7 @@ sub sign {
                                 Passphrase => $passphrase,
                                 Key        => $key);
         die "Signing attempt failed: ", $pgp->errstr() unless $signature;
-        print "Sig: $signature\n";
+
     };
     if ($@) {
        $self->{errstr} = $@;
