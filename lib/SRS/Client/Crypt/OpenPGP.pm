@@ -199,15 +199,15 @@ sub sign {
         my $passphrase = $params{PassPhrase} || $params{Passphrase} || '';
         my $pgp        = $self->{PGP};
         print "Data: $params{Data}\n";
-        print "Key: $params{Key}\n";
+        print "Key: $params{Key} -- $self->{DefaultSigningKey}\n";
         print "PassPhrase: $params{PassPhrase}\n";
         print "PGP: $self->{PGP}\n";
         $signature = $pgp->sign(Data       => utf8_encode ($data),
-                                   Detach     => 1,
-                                   Armour     => 1,
-                                   Digest     => 'SHA1',
-                                   Passphrase => $passphrase,
-                                   Key        => $key);
+                                Detach     => 1,
+                                Armour     => 1,
+                                Digest     => 'SHA1',
+                                Passphrase => $passphrase,
+                                Key        => $key);
         die "Signing attempt failed: ", $pgp->errstr() unless $signature;
     };
     if ($@) {
