@@ -37,6 +37,7 @@ use Encode;
 use Encoding::FixLatin qw(fix_latin);
 use utf8;
 use Time::HiRes qw(time);
+use Data::Dumper;
 
 
 sub new {
