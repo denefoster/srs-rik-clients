@@ -227,6 +227,8 @@ sub send {
         if ($r) {
             print "LD: $leftover -- $data\n";
             my ($rs, $ss) = ("$leftover$data" =~ /^(.*?)(\&.*)?$/);
+            print "RS: $rs\n";
+            print "SS: $ss\n";
             if ($rs =~ /\%/) {
                 ($rs, $leftover) = ($rs =~ /^(.*)(\%.*?)$/);
             } else {
