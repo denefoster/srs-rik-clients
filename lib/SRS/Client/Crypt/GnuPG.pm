@@ -91,7 +91,7 @@ sub sign {
 
     $self->{'ctx'}->sign(  plaintext   => "/home/vagrant/srs-rik-clients/waihi.xml",
                            output      => "/tmp/$file",
-#                           armor       => 1,
+                           armor       => 1,
 #                           sign        => 1,
                            passphrase  => $self->{'passphrase'}
     );
