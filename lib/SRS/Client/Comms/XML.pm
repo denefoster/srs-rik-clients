@@ -165,9 +165,11 @@ sub send {
                 return "Could not sign request($pass_file doesn't exist)";
             }
         }
-
+        print "Signing request\n";
         $signature = $pgp->sign(%sign_params);
     }
+    
+    print "Error: $self->{'errstr'}\n" if defined $self->{'errstr'};
 
     # Check for error in signing
     unless (defined($signature)) {
