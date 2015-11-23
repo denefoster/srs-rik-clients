@@ -187,8 +187,6 @@ sub send {
         $url = $self->{url};
     }
 
-    warn("Posting to $url: " . Dumper(\%postParams) . "\n");
-
     my $req = POST $url, \%postParams;
     
     if ( ! $req ) {

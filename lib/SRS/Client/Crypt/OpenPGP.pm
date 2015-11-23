@@ -192,7 +192,7 @@ sub sign {
     my %params = @_;
 
     my $signature;
-    print "Params: " . Dumper(\%params) . "\n";
+
     eval {
         my $data       = $params{Data}       or croak "Data not supplied";
         my $key        = $params{Key}        || $self->{DefaultSigningKey};
