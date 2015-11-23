@@ -209,6 +209,9 @@ sub send {
     my ($r, $s, $cnt);
     my $response_callback = sub {
         my($data, $res, $protocol) = @_;
+        print STDERR "Data: $data\n";
+        print STDERR "Res: $res\n";
+        print STDERR "Protocol: $protocol\n";
         $cnt++;
 
         if (!$r && !$s) {
