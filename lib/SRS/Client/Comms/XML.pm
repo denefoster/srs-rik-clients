@@ -209,9 +209,6 @@ sub send {
     my ($r, $s, $cnt);
     my $response_callback = sub {
         my($data, $res, $protocol) = @_;
-        print STDERR "Data: $data\n";
-        print STDERR "Res: $res\n";
-        print STDERR "Protocol: $protocol\n";
         $cnt++;
 
         if (!$r && !$s) {
@@ -223,12 +220,9 @@ sub send {
                 return;
             }
         }
-        print "R: $r\n";
+
         if ($r) {
-            print "LD: $leftover -- $data\n";
             my ($rs, $ss) = ("$leftover$data" =~ /^(.*?)(\&.*)?$/);
-            print "RS: $rs\n";
-            print "SS: $ss\n";
             if ($rs =~ /\%/) {
                 ($rs, $leftover) = ($rs =~ /^(.*)(\%.*?)$/);
             } else {
@@ -244,7 +238,6 @@ sub send {
                 $data = $ss;
             }
         }
-        print "S: $s\n";
 
         if ($s) {
             $received_sig .= $data; 
@@ -253,9 +246,7 @@ sub send {
 
     # Send request, and grab response back.
     my $res = $self->{ua}->request($req, $response_callback, 4096);
-    print "Leftover: $leftover\n";
-    print "Res: $response_xml\n";
-    print "SIG: $received_sig\n";
+
     if ($res->content) {
         # If we have something in the content, it must have been due to an error
         # LWP doesn't run the callback if an HTTP error status code is returned
