@@ -83,17 +83,17 @@ sub sendXML {
 #            passphrase    => $self->{gpg_passphrase},
 #            uid           => $self->{gpg_id},
 #        ),
-#        pgp => new SRS::Client::Crypt::GpgME(
-#            secretKeyRing => $self->{gpg_secret},
-#            publicKeyRing => $self->{gpg_public},
-#            passphrase    => $self->{gpg_passphrase},
-#            uid           => $self->{gpg_id},
-#        ),
-        pgp => new SRS::Client::Crypt::OpenPGP(
+        pgp => new SRS::Client::Crypt::GpgME(
             secretKeyRing => $self->{gpg_secret},
             publicKeyRing => $self->{gpg_public},
+            passphrase    => $self->{gpg_passphrase},
             uid           => $self->{gpg_id},
         ),
+#        pgp => new SRS::Client::Crypt::OpenPGP(
+#            secretKeyRing => $self->{gpg_secret},
+#            publicKeyRing => $self->{gpg_public},
+#            uid           => $self->{gpg_id},
+#        ),
         timeout => $self->{timeout},
         secureUrl => $self->{url},    
         program => $program,
