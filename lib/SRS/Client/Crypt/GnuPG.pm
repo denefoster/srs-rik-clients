@@ -37,7 +37,7 @@ sub new {
     my ($class, %args) = @_;
 
     my $self = {
-        'ctx'        => GnuPG->new(),
+        'ctx'        => GnuPG->new( trace => 1 ),
         'public_key' => $args{'publicKeyRing'},
         'passphrase' => $args{'passphrase'}
     };
