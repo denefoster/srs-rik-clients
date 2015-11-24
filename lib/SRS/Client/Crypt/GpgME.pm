@@ -84,11 +84,11 @@ sub sign {
     
     print "Sign: Data - $params{'Data'}\n";
 
-    my $key = $self->{'ctx'}->get_key('E9CF F623 6100 DF9E 1785  998D 0C2E 071E B15D A768', 1);
-    $self->{'ctx'}->signers_add($key);
+#    my $key = $self->{'ctx'}->get_key('E9CF F623 6100 DF9E 1785  998D 0C2E 071E B15D A768', 1);
+#    $self->{'ctx'}->signers_add($key);
 
-    my $signed = $self->{'ctx'}->sign( $params{'Data'} );
-    print "Sig: $signed\n";
+    my $signed = $self->{'ctx'}->sign( $params{'Data'}, 'SIG_MODE_DETACH' );
+
     return $signed;
 
 }
