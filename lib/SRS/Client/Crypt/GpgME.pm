@@ -48,9 +48,12 @@ sub new {
     my @results = $self->{'ctx'}->keylist('');
     print "Keylist: " . Dumper(@results) . "\n";
 
+    my $count = $self->{'ctx'}->signers_count();
+    print "Count: $count\n";
+
     if ( defined $args{'secretKeyRing'} ) {
         $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
-        print "Added secret key '$args{'secretKeyRing'}' to keyring.";
+        print "Added secret key '$args{'secretKeyRing'}' to context.";
     }
 
     bless $self, $class;
@@ -62,8 +65,8 @@ sub new {
 sub verify {
     my ($self, %params) = @_;
     
-    print "Data: $params{'Data'}\n";
-    print "Signature: $params{'Signature'}\n";
+#    print "Data: $params{'Data'}\n";
+#    print "Signature: $params{'Signature'}\n";
     
 #    print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
