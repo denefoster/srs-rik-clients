@@ -44,6 +44,9 @@ sub new {
     $self->{'ctx'}->set_armor(1);
     $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
 
+    my @results = $self->{'ctx'}->keylist();
+    print "Keylist: " . Dumper(@results) . "\n";
+
     if ( defined $args{'secretKeyRing'} ) {
         $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
         print "Added secret key '$args{'secretKeyRing'}' to keyring.";
