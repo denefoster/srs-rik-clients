@@ -41,6 +41,7 @@ sub new {
         'public_key' => $args{'publicKeyRing'}
     };
     
+    $self->{'ctx'}->set_armor(1);
     $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
 
     if ( defined $args{'secretKeyRing'} ) {
