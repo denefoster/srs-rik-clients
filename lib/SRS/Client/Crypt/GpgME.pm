@@ -76,7 +76,7 @@ sub sign {
     
     print "Sign: Data - $params{'Data'}\n";
 
-    my $signed = $self->{'ctx'}->sign( $params{'Data'}, 'GPGME_SIG_MODE_DETACH' );
+    my $signed = $self->{'ctx'}->sign( $params{'Data'} );
     print "Sig: $signed\n";
     return $signed;
 
