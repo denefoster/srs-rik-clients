@@ -71,7 +71,7 @@ sub verify {
     print "Wrote response to /tmp/$file\n";
     
     my $sig = $self->{'ctx'}->verify( file      => "/tmp/$file",
-                                      signature => "/tmp/$file"
+                                      signature => "$FindBin::Bin/../etc/reg.key"
     );
 
     return defined $sig ? 1 : 0;
