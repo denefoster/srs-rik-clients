@@ -62,15 +62,18 @@ sub new {
 sub verify {
     my ($self, %params) = @_;
     
-    print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
+    print "Data: $params{'Data'}\n";
+    print "Signature: $params{'Signature'}\n";
     
-    print "Verify: Data - $params{'Data'}\n";
+#    print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
     
-    my $key = read_file( "$FindBin::Bin/../etc/reg.key" ) ;
+#    print "Verify: Data - $params{'Data'}\n";
     
-    print "Verify: Key - $key\n";
+#    my $key = read_file( "$FindBin::Bin/../etc/reg.key" ) ;
     
-    my $verified = $self->{'ctx'}->verify( $key, $params{'Data'} );
+#    print "Verify: Key - $key\n";
+    
+    my $verified = $self->{'ctx'}->verify( $params{'Signature'}, $params{'Data'} );
 
     return $verified;
 
