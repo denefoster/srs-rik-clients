@@ -36,8 +36,6 @@ use File::Slurp;
 sub new {
     my ($class, %args) = @_;
 
-    print STDERR "Secret: $args{'passphrase'}\n";
-
     my $self = {
         'ctx'        => GnuPG->new(),
         'public_key' => $args{'publicKeyRing'},
@@ -70,7 +68,7 @@ sub verify {
     my $file = uniq_file();
     write_file( '/tmp/' . $file, $params{'Data'} );
     
-    print "Wrote response to $file\n";
+    print "Wrote response to /tmp/$file\n";
     
     my $sig = $self->{'ctx'}->verify( file      => "/tmp/$file",
                                       signature => "$FindBin::Bin/../etc/reg.key"
@@ -92,12 +90,10 @@ sub sign {
     $self->{'ctx'}->sign(  'plaintext'   => "/home/vagrant/srs-rik-clients/waihi.xml",
                            'output'      => "/tmp/$file",
                            'armor'       => 1,
-#                           sign        => 1,
                            'detach-sign' => 1,
                            'passphrase'  => $self->{'passphrase'}
     );
 
-    my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
     my $signature = read_file("/tmp/$file");
     
     print "Sig: $signature\n";
