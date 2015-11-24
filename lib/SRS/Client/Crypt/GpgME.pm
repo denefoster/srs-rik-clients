@@ -32,6 +32,7 @@ use IO::File;
 use Crypt::GpgME;
 use FindBin;
 use File::Slurp;
+use Data::Dumper;
 
 sub new {
     my ($class, %args) = @_;
