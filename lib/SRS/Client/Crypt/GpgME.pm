@@ -48,9 +48,6 @@ sub new {
     my @results = $self->{'ctx'}->keylist('');
     print "Keylist: " . Dumper(@results) . "\n";
 
-    my $count = $self->{'ctx'}->signers_count();
-    print "Count: $count\n";
-
     if ( defined $args{'secretKeyRing'} ) {
         $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
         print "Added secret key '$args{'secretKeyRing'}' to context.";
