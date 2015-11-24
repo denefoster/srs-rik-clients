@@ -89,11 +89,12 @@ sub sign {
     
     print "Writing sig to /tmp/$file\n";
 
-    $self->{'ctx'}->sign(  plaintext   => "/home/vagrant/srs-rik-clients/waihi.xml",
-                           output      => "/tmp/$file",
-                           armor       => 1,
+    $self->{'ctx'}->sign(  'plaintext'   => "/home/vagrant/srs-rik-clients/waihi.xml",
+                           'output'      => "/tmp/$file",
+                           'armor'       => 1,
 #                           sign        => 1,
-                           passphrase  => $self->{'passphrase'}
+                           'detach-sign' => 1,
+                           'passphrase'  => $self->{'passphrase'}
     );
 
     my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
