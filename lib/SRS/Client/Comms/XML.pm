@@ -165,7 +165,7 @@ sub send {
                 return "Could not sign request($pass_file doesn't exist)";
             }
         }
-        print "Signing request\n";
+
         $signature = $pgp->sign(%sign_params);
     }
     
