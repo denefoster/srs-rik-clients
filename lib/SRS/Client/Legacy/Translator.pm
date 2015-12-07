@@ -23,6 +23,7 @@ package SRS::Client::Legacy::Translator;
 use strict;
 use warnings;
 
+use SRS::Client::JSON::Translator;
 use Carp;
 use Date::Parse;
 
