@@ -32,6 +32,7 @@ use IO::File;
 use Crypt::GpgME;
 use FindBin;
 use File::Slurp;
+use Data::Dumper;
 
 sub new {
     my ($class, %args) = @_;
@@ -41,11 +42,12 @@ sub new {
         'public_key' => $args{'publicKeyRing'}
     };
     
+    $self->{'ctx'}->set_armor(1);
     $self->{'ctx'}->set_passphrase_cb(sub { $args{'passphrase'} });
 
     if ( defined $args{'secretKeyRing'} ) {
         $self->{'ctx'}->signers_add( $args{'secretKeyRing'} );
-        print "Added secret key '$args{'secretKeyRing'}' to keyring.";
+        print "Added secret key '$args{'secretKeyRing'}' to context.";
     }
 
     bless $self, $class;
@@ -57,15 +59,7 @@ sub new {
 sub verify {
     my ($self, %params) = @_;
     
-    print "Verify: Primary Key - $FindBin::Bin/../etc/reg.key\n";
-    
-    print "Verify: Data - $params{'Data'}\n";
-    
-    my $key = read_file( "$FindBin::Bin/../etc/reg.key" ) ;
-    
-    print "Verify: Key - $key\n";
-    
-    my $verified = $self->{'ctx'}->verify( $key, $params{'Data'} );
+    my $verified = $self->{'ctx'}->verify( $params{'Signature'}, $params{'Data'} );
 
     return $verified;
 
@@ -73,10 +67,8 @@ sub verify {
 
 sub sign {
     my ($self, %params) = @_;
-    
-    print "Sign: Data - $params{'Data'}\n";
 
-    my $signed = $self->{'ctx'}->sign( $params{'Data'} );
+    my $signed = $self->{'ctx'}->sign( $params{'Data'}, 'DETACH' );
 
     return $signed;
 

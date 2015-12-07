@@ -32,11 +32,12 @@ use strict;
 use warnings;
 use Carp;
 
-use Crypt::OpenPGP;
+use Crypt::OpenPGP 1.09;
 use Encode;
 use Encoding::FixLatin qw(fix_latin);
 use utf8;
 use Time::HiRes qw(time);
+use Data::Dumper;
 
 
 sub new {
@@ -101,12 +102,12 @@ sub _verify_impl {
     # unpack the signature
     my $msg = Crypt::OpenPGP::Message->new(Data => $armoured_sig)
         or die "reading data packets failed: " .Crypt::OpenPGP::Message->errstr;
-	    
+
     my @pieces = $msg->pieces;
 	
 	# this disallows non-detached signatures
 	die "signature message contains multiple parts\n" if @pieces > 1;
-	
+
 	if ( ref($pieces[0]) ne 'Crypt::OpenPGP::Signature' ) {
         die "signature message is type '".ref($pieces[0])."', which is weird - rejecting\n";
 	}
@@ -197,13 +198,15 @@ sub sign {
         my $key        = $params{Key}        || $self->{DefaultSigningKey};
         my $passphrase = $params{PassPhrase} || $params{Passphrase} || '';
         my $pgp        = $self->{PGP};
+        print "PRESIGN\n";
         $signature = $pgp->sign(Data       => utf8_encode ($data),
-                                   Detach     => 1,
-                                   Armour     => 1,
-                                   Digest     => 'SHA1',
-                                   Passphrase => $passphrase,
-                                   Key        => $key);
+                                Detach     => 1,
+                                Armour     => 1,
+                                Digest     => 'SHA1',
+                                Passphrase => $passphrase,
+                                Key        => $key);
         die "Signing attempt failed: ", $pgp->errstr() unless $signature;
+
     };
     if ($@) {
        $self->{errstr} = $@;
@@ -275,6 +278,8 @@ sub getSecKeyBlock {
 
     my $sec_ring = $pgp->{cfg}->get('SecRing')
       or return;
+      
+    print "Sec Ring: $sec_ring\n";
 
     my $ring;
     if (ref $sec_ring && $sec_ring->isa('Crypt::OpenPGP::KeyRing' )) { # is blessed into Crypt::OpenPGP::KeyRing?

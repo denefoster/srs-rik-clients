@@ -37,9 +37,9 @@ sub new {
     my ($class, %args) = @_;
 
     my $self = {
-        'ctx'        => GnuPG->new(),
+        'ctx'        => GnuPG->new( trace => 1 ),
         'public_key' => $args{'publicKeyRing'},
-        'secret'     => $args{'passphrase'}
+        'passphrase' => $args{'passphrase'}
     };
 
     if (defined $args{'publicKeyRing'} ) {
@@ -65,7 +65,12 @@ sub verify {
     
     print "Verify: Data - $params{'Data'}\n";
     
-    my $sig = $self->{'ctx'}->verify( file => "$FindBin::Bin/../etc/reg.key",
+    my $file = uniq_file();
+    write_file( '/tmp/' . $file, $params{'Data'} );
+    
+    print "Wrote response to /tmp/$file\n";
+    
+    my $sig = $self->{'ctx'}->verify( file      => "/tmp/$file",
                                       signature => "$FindBin::Bin/../etc/reg.key"
     );
 
@@ -78,19 +83,39 @@ sub sign {
     
     print "Sign: Data - $params{'Data'}\n";
 
-    $self->{'ctx'}->sign(  plaintext   => "/home/vagrant/srs-rik-clients/waihi.xml",
-                           output      => "/home/vagrant/srs-rik-clients/file.gpg",
-                           armor       => 1,
-                           sign        => 1,
-                           passphrase  => $self->{'passphrase'}
+    my $file = uniq_file();
+    
+    print "Writing sig to /tmp/$file\n";
+
+    $self->{'ctx'}->sign(  'plaintext'   => "/home/vagrant/srs-rik-clients/waihi.xml",
+                           'output'      => "/tmp/$file",
+                           'armor'       => 1,
+                           'detach-sign' => 1,
+                           'passphrase'  => $self->{'passphrase'}
     );
 
-    my $request = read_file('/home/vagrant/srs-rik-clients/waihi.xml');
-    my $signature = read_file('/home/vagrant/srs-rik-clients/file.gpg');
+    my $signature = read_file("/tmp/$file");
+    
+    print "Sig: $signature\n";
 
-    return $request;
+    return $signature;
 
 }
+
+sub uniq_file {
+    
+    my $file = rndStr(8, 'a'..'z', 0..9) . '.tmp';
+    
+    while ( -e $file ) {
+        $file = rndStr(8, 'a'..'z', 0..9) . '.tmp';
+        next;
+    }
+
+    return $file;
+
+}
+
+sub rndStr{ join'', @_[ map{ rand @_ } 1 .. shift ] }
 
 1;
 

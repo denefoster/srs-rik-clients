@@ -32,6 +32,7 @@ use SRS::Client::URLEncoding;
 
 use LWP::UserAgent;
 use HTTP::Request::Common;
+use Data::Dumper;
 
 use constant DEFAULT_TIMEOUT => '180';
 
@@ -167,6 +168,8 @@ sub send {
 
         $signature = $pgp->sign(%sign_params);
     }
+    
+    print "Error: $self->{'errstr'}\n" if defined $self->{'errstr'};
 
     # Check for error in signing
     unless (defined($signature)) {
