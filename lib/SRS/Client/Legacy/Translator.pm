@@ -230,13 +230,13 @@ sub from_request_to_xml {
     );    
 }
 
-#sub from_response_to_legacy_output {
-#    my $xml = shift;
-#        
-#    my $data = SRS::Client::JSON::Translator::from_response_to_data($xml);
-#    
-#    return _generate_output($data);
-#}
+sub from_response_to_legacy_output {
+    my $xml = shift;
+        
+    my $data = SRS::Client::JSON::Translator::from_response_to_data($xml);
+    
+    return _generate_output($data);
+}
 
 sub _generate_output {
     my $fields = shift;
