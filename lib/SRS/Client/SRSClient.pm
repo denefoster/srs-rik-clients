@@ -42,6 +42,8 @@ sub new {
     
     my $optionParser = SRS::Client::Options::SRSClient->new();
     my $self = $optionParser->getOptions(\@args);
+    
+    $self->{'debug'} = 1;
 
     bless ($self, $class);
     
