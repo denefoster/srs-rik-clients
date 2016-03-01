@@ -1,0 +1,21 @@
+
+#returns messages between the specified dates#
+
+Transaction: GetMessages 
+Originating_Registrar_ID: 90 
+Trans_date_from: 2007/05/28,12:30 
+Trans_date_to: 2007/07/28,12:30
+
+
+#returns a message with a specific ActionId#
+
+Transaction: GetMessages 
+Action_id: clear_postal_code_test_102610200403
+
+
+#returns messages originating from other registrars#
+
+Transaction: GetMessages 
+Originating_Registrar_ID: OTHERS 
+Trans_date_from: 2007/05/28,12:30 
+Trans_date_to: 2007/07/28,12:30

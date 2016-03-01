@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PACKAGE=$(basename $0 .postinst)
+update-ca-certificates

@@ -1,0 +1,13 @@
+Source: srs-rik-clients
+Section: srs
+Priority: extra
+Maintainer: SRS Admins <developers@nzrs.net.nz>
+Standards-Version: 3.7.0
+Build-Depends: debhelper
+
+Package: srs-rik-clients
+Depends: libencoding-fixlatin-perl, libfile-slurp-perl, libjson-any-perl, libcrypt-gpgme-perl, libgpgme11, libwww-perl
+Architecture: all
+Section: srs
+Description: SRS RIK client
+ SRS RIK Client.

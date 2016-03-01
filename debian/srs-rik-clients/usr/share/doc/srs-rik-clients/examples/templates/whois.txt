@@ -1,0 +1,15 @@
+
+#whois for availability check#
+
+Transaction: Whois
+Domain_name: nzrs.net.nz
+source_ip: 0.0.0.0
+full_result: 0
+
+
+#whois returns details of domain#
+
+Transaction: Whois
+Domain_name: nzrs.net.nz
+source_ip: 0.0.0.0
+full_result: 1

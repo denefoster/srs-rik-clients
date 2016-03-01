@@ -1,0 +1,51 @@
+
+#update registrar public name field#
+
+Transaction: registrarupdate
+Action_ID: test_1026102 
+Registrarpub_Name: updated_public_contact
+
+
+#update URL#
+
+Transaction: registrarupdate
+Action_ID: test_1026102 
+url: http://www.site.com
+
+
+#update all available fields#
+
+Transaction: RegistrarUpdate
+Action_ID: test_1026102 
+url: http://www.test.com
+Registrarpub_Name: updated_public_contact
+Registrarpub_Address1: address1
+Registrarpub_Address2: address2
+Registrarpub_Country: NZ
+Registrarpub_City: wgtn
+Registrarpub_Email: test@test.co.nz
+Registrarpub_phone: +64-4-123-4567
+Registrarpub_fax: +64-4-1234567
+registrarpub_postalcode: 123
+Registrarsrs_Name: srsname
+Registrarsrs_Address1: address1
+Registrarsrs_Address2: address2
+Registrarsrs_Country: NZ
+Registrarsrs_City: wgtn
+Registrarsrs_Email: test@test.co.nz
+Registrarsrs_phone: +64-4-123-4567
+Registrarsrs_fax: +64-4-1234567
+registrarsrs_postalcode:123
+defaultTech_Name: default_tech_name
+defaulttech_Address1: address1
+defaulttech_Address2: address2
+defaulttech_Country: NZ
+defaulttech_City: wgtn
+defaulttech_Email: test@test.co.nz
+defaulttech_phone: +64-4-123-4567
+defaulttech_fax: +64-4-1234567
+defaulttech_postalcode: 0000
+
+
+Note: Contact registry to update 2LD's, public key, the access role list, the Registrar Name, and the Registrar Accounting Reference
+

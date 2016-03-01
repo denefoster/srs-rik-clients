@@ -1,0 +1,79 @@
+
+#domain create usings only mandatory fields#
+
+Transaction: DomainCreate
+Domain_Name: minfields01.co.nz
+action_id: minfields01.co.nz_16072007
+billing_term: 3
+Registrant_Name: test
+Registrant_Address1: address1
+Registrant_Country: NZ
+Registrant_City: wgtn
+Registrant_Email: test@test.co.nz
+registrant_phone: +64-4-123-4567
+
+
+#domain create using all fields#
+
+Transaction: DomainCreate
+Domain_Name: allfields01.co.nz
+action_id: allfields01.co.nz_16072007
+billing_term: 3
+Delegate: 1
+Registrant_Customer_Ref: ref
+Registrant_Name: test
+Registrant_Address1: address1
+Registrant_Address2: address2
+registrant_postalcode: 1234
+registrant_province: Wgtn
+Registrant_Country: NZ
+Registrant_City: wgtn
+Registrant_Email: test@test.co.nz
+registrant_phone: +64-4-123-4567
+registrant_fax: +64-4-1234567
+Admin_Name: Admin
+admin_Address1: address1
+admin_Address2: address2
+admin_postalcode: 1234
+admin_province: wgtn
+admin_Country: NZ
+admin_City: wgtn
+admin_Email: test@test.co.nz
+admin_phone: +64-4-1234567
+admin_fax: +64-4-1234567
+Tech_Name: Tech
+tech_Address1: address1
+tech_Address2: address2
+tech_postalcode: 1234
+tech_province: wgtn
+tech_Country: NZ
+tech_City: wgtn
+tech_Email: test@test.co.nz
+tech_phone: +64-4-1234567
+tech_fax: +64-4-1234567
+NS_Name_1: ns.co.nz
+NS_Name_2: ns2.co.nz
+NS_IP_1: 192.168.1.1
+NS_IP6_1: 2001:0DB8:DEAD::BEEF
+NS_IP_2: 192.168.2.2
+NS_IP6_2: 2001:0DB8:DEAD::BABE
+DS_key_tag_1: 1
+DS_algorithm_1: 5
+DS_digest_type_1: 1
+DS_digest_1: ca45387f093d3424e95d7274bc6ef52190dfe6e8
+audit_text: "domain create"
+
+#IDN create with mandatory fields#
+
+Transaction: DomainCreate
+Domain_Name: xn--mori-qsa.geek.nz
+Domain_Name_Unicode: māori.geek.nz
+action_id: idn_example 24022010
+billing_term: 3
+Registrant_Name: test
+Registrant_Address1: address1
+Registrant_Country: NZ
+Registrant_City: wgtn
+Registrant_Email: test@test.co.nz
+registrant_phone: +64-4-123-4567
+

@@ -1,0 +1,16 @@
+
+#registrar details qry using ID#
+
+Transaction: RegistrarDetailsQry
+Registrar_Id: 90
+
+
+#find history of registrar details#
+
+Transaction: RegistrarDetailsQry 
+Registrar_Id: 90 
+result_date_from: 2007/05/28,12:30 
+result_date_to: 2007/07/28,12:30
+
+
+

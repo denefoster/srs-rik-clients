@@ -1,0 +1,4 @@
+bin/* usr/bin
+lib/SRS usr/share/perl5
+etc/templates usr/share/doc/srs-rik-clients/examples
+etc/certs/* usr/local/share/ca-certificates

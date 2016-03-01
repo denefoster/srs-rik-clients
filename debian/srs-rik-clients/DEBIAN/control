@@ -1,0 +1,10 @@
+Package: srs-rik-clients
+Version: 1.0
+Architecture: all
+Maintainer: SRS Admins <developers@nzrs.net.nz>
+Installed-Size: 187
+Depends: libencoding-fixlatin-perl, libfile-slurp-perl, libjson-any-perl, libcrypt-gpgme-perl, libgpgme11, libwww-perl
+Section: srs
+Priority: extra
+Description: SRS RIK client
+ SRS RIK Client.
